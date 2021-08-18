@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Square from './Square';
 
 function Board(): JSX.Element {
-  const [squares, setSquares] = useState(Array(9).fill(null));
-  const [xIsNext, setXIsnext] = useState(true);
+  const [squares, setSquares] = useState<string[]>(Array(9).fill(null));
+  const [xIsNext, setXIsnext] = useState<boolean>(true);
   function handleClick(i: number) {
     if (calculateWinner(squares || squares[i])) {
       return;
@@ -18,7 +18,6 @@ function Board(): JSX.Element {
     return <Square value={squares[i]} onClick={() => handleClick(i)} />;
   }
 
-  //const status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
@@ -51,7 +50,7 @@ function Board(): JSX.Element {
 
 export default Board;
 
-function calculateWinner(squares: string[]) {
+function calculateWinner(squares: string[]): string | null {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
